@@ -1,0 +1,205 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the completed-project-section of the site/application.
+// -----------------------------------------------------------------------------
+
+.completed-project {
+  background-color: #131313;
+  height: 100vh;
+  &-wrapper {
+    display: flex;
+    padding: 10.7rem 0 0 4rem;
+
+    @include respond(regular-desktop) {
+      flex-direction: column;
+      padding: 2rem 0;
+      align-items: center;
+    }
+
+    &_item {
+      width: 45%;
+      position: relative;
+      @include respond(regular-desktop) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      &-mobile-left-arr {
+        display: none;
+        @include respond(small-phone) {
+          position: absolute;
+          display: block;
+          top: 45%;
+          left: 1%;
+        }
+      }
+
+      &-mobile-right-arr {
+        display: none;
+        @include respond(small-phone) {
+          position: absolute;
+          display: block;
+          top: 45%;
+          right: 1%;
+        }
+      }
+
+      &__main-title {
+        margin-top: 9rem;
+        @include respond(regular-desktop) {
+          text-align: center;
+          br {
+            display: none;
+          }
+        }
+        @include respond(small-phone) {
+          margin-top: 4rem;
+        }
+      }
+
+      &__title {
+        display: inline;
+        text-transform: uppercase;
+        font: normal 100% / 1.9rem $title-font-stack;
+        margin-right: 5rem;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.3);
+        @include respond(small-tablets) {
+          margin-right: 1rem;
+          font-size: 80%;
+        }
+        @include respond(small-phone) {
+          display: none;
+        }
+      }
+
+      &__text {
+        line-height: 2.7rem;
+        margin: 3.4rem 0 4rem 0;
+        @include respond(regular-desktop) {
+          text-align: center;
+          br {
+            display: none;
+          }
+        }
+        @include respond(small-phone) {
+          font-size: 78.6%;
+          &::after {
+            margin-top: 2rem;
+            display: block;
+            content: "";
+            width: 100%;
+            height: 24.15rem;
+            background-image: url('../uploads/small-project-carousel.jpg');
+          }
+        }
+      }
+
+      &-info {
+        display: inline-flex;
+        flex-direction: column;
+        margin: 0 6rem 3.4rem 0;
+        width: 18rem;
+        @include respond(regular-desktop) {
+          width: 40%;
+          padding: 0 11rem;
+        }
+        @include respond(small-tablets) {
+          width: 30%;
+          flex-direction: row;
+          flex-wrap: wrap;
+          padding: 0 5rem;
+
+        }
+        &__title {
+            font: normal 128.6% / 5.3rem $title-font-stack;
+            color: $brand-color;
+            text-transform: uppercase;
+            @include respond(small-tablets) {
+              line-height: 2.5rem;
+            }
+            @include respond(small-phone) {
+              font-size: 100%;
+            }
+        }
+
+        &__text {
+          font-size: 92.9%;
+          line-height: 2.1rem;
+        }
+      }
+
+      &__img {
+        margin-top: 5.3rem;
+        width: 67.9rem;
+        height: 48.2rem;
+        background-image: url('../uploads/completed-project-pic-1.jpg');
+        @include respond(regular-desktop) {
+          width: 50rem;
+          display: block;
+          margin: 2rem auto;
+        }
+        @include respond(small-tablets) {
+          width: 40rem;
+        }
+        @include respond(small-phone) {
+          display: none;
+        }
+      }
+    }
+
+    &_item-nav {
+      display: flex;
+      align-items: center;
+      margin-top: 8rem;
+      padding-bottom: 6rem;
+      @include respond(regular-desktop) {
+        justify-content: center;
+        margin-top: 1rem;
+        width: 100%;
+      }
+      @include respond(small-phone) {
+        display: none;
+      }
+
+      &__arrow {
+        margin-right: 2.95rem;
+        cursor: pointer;
+      }
+
+      &__arrow:last-child {
+        margin-left: 2.95rem;
+        cursor: pointer;
+      }
+
+      &__circle {
+        margin: 0 0.7rem;
+        cursor: pointer;
+        width: 1rem;
+        height: 1rem;
+        background-image: url('../img/circle-empty-ic.svg');
+      }
+    }
+
+    &_item:last-child {
+      width: 60%;
+      @include respond(regular-desktop) {
+        width: 100%;
+      }
+      @include respond(small-tablets) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.active {
+  color: $brand-color;
+  border-bottom: 0.1rem solid $brand-color;
+  padding-bottom: 0.7rem;
+}
+
+.full-circle {
+  background-image: url('../img/circle-full-ic.svg');
+}

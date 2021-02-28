@@ -1,0 +1,47 @@
+/**
+ * Basic typography style for copy text
+ */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital@0;1&family=Yeseva+One&display=swap');
+
+body {
+  color: $text-color;
+  font: normal 140% / 2.3 $text-font-stack;
+
+}
+
+// use in main section
+h1 {
+  font: normal 285.7% / 5.3rem $title-font-stack;
+  text-transform: uppercase;
+  @include respond(small-tablets) {
+    font-size: 180%;
+  }
+  @include respond(small-phone) {
+    font-size: 164.3%;
+  }
+}
+
+//use in completed-project section
+h2 {
+  font: normal 192.9% / 3.7rem $title-font-stack;
+  color: $brand-color;
+  text-transform: uppercase;
+  @include respond(small-phone) {
+    font-size: 157.14%;
+  }
+}
+//use in Online Control, Types Of Repair
+h3 {
+  font: normal 142.9% / 2.8rem $title-font-stack;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+
+//use in types of repair content block
+h6 {
+  font: normal 128.6% / 2.5rem $title-font-stack;
+  color: $dark-grey;
+  margin-bottom: 1.3rem;
+}
