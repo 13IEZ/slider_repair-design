@@ -3,9 +3,6 @@ const btnNext = document.querySelector('#right');
 const btnPrev = document.querySelector('#left');
 
 const img = document.querySelector('.completed-project-wrapper_item__img');
-const firstImg = 'url(\'../uploads/completed-project-pic-1.jpg\')';
-const secondImg = 'url(\'../uploads/completed-project-pic-2.jpg\')';
-const thirdImg = 'url(\'../uploads/completed-project-pic-3.jpg\')';
 
 const titles = document.querySelectorAll('.completed-project-wrapper_item__title');
 const activeTitle = 'active';
@@ -17,89 +14,73 @@ const city = document.querySelector('.city');
 const area = document.querySelector('.area');
 const time = document.querySelector('.time');
 
+const dbCarousel = [
+	{
+		img: 'url(uploads/completed-project-pic-1.jpg)',
+		city: 'Rostov-on-Don \n LCD admiral',
+		area: '81 m2',
+		time: '3.5 months'
+	},
+	{	img: 'url(uploads/completed-project-pic-2.jpg)',
+		city: 'Sochi \n Thieves',
+		area: '105 m2',
+		time: '4 months'
+	},
+	{
+		img: 'url(uploads/completed-project-pic-3.jpg)',
+		city: 'Rostov-on-Don \n Patriotic',
+		area: '93 m2',
+		time: '3 months'
+	}
+];
+
 let currTarget = 1;
 
-const doFirstParam = () => {
-	img.style.backgroundImage = firstImg;
+const setSlide = i => {
 	titles.forEach(elem => elem.classList.remove(activeTitle));
-	titles[0].classList.add(activeTitle);
+	titles[i].classList.add(activeTitle);
 	circles.forEach(elem => elem.classList.remove(activeCircle));
-	circles[0].classList.add(activeCircle);
-	city.innerText = 'Rostov-on-Don \n LCD admiral';
-	area.innerText = '81 m2';
-	time.innerText = '3.5 months';
-};
-
-const doSecondParam = () => {
-	img.style.backgroundImage = secondImg;
-	titles.forEach(elem => elem.classList.remove(activeTitle));
-	titles[1].classList.add(activeTitle);
-	circles.forEach(elem => elem.classList.remove(activeCircle));
-	circles[1].classList.add(activeCircle);
-	city.innerText = 'Sochi \n Thieves';
-	area.innerText = '105 m2';
-	time.innerText = '4 months';
-};
-
-const doThirdParam = () => {
-	img.style.backgroundImage = thirdImg;
-	titles.forEach(elem => elem.classList.remove(activeTitle));
-	titles[2].classList.add(activeTitle);
-	circles.forEach(elem => elem.classList.remove(activeCircle));
-	circles[2].classList.add(activeCircle);
-	city.innerText = 'Rostov-on-Don \n Patriotic';
-	area.innerText = '93 m2';
-	time.innerText = '3 months';
+	circles[i].classList.add(activeCircle);
+	city.innerText = dbCarousel[i].city;
+	area.innerText = dbCarousel[i].area;
+	time.innerText = dbCarousel[i].time;
+	img.style.backgroundImage = dbCarousel[i].img;
 };
 
 
 btnNext.addEventListener('click', (e) => {
-	if (currTarget === 1) {
+	if (currTarget === dbCarousel.length) {
+		currTarget = 1;
+		setSlide(currTarget - 1);
+	} else {
 		currTarget++;
-		doSecondParam();
-	} else if (currTarget === 2) {
-		currTarget++;
-		doThirdParam();
+		setSlide(currTarget - 1);
 	}
 });
 
 btnPrev.addEventListener('click', () => {
-	if (currTarget === 3) {
+	if (currTarget === 1) {
+		currTarget = dbCarousel.length;
+		setSlide(currTarget - 1);
+	} else {
 		currTarget--;
-		doSecondParam();
-	} else if (currTarget === 2) {
-		currTarget--;
-		doFirstParam();
+		setSlide(currTarget - 1);
 	}
 });
 
-
 circles.forEach(elem => {
 	elem.addEventListener('click', (e) => {
-		if (+e.target.id === 1) {
-			currTarget = 1;
-			doFirstParam();
-		} else if (+e.target.id === 2) {
-			currTarget = 2;
-			doSecondParam();
-		} else if (+e.target.id === 3) {
-			currTarget = 3;
-			doThirdParam();
-		}
+		setSlide(e.target.id - 1);
+		currTarget = +e.target.id;
 	});
 });
 
 titles.forEach(elem => {
 	elem.addEventListener('click', (e) => {
-		if (e.target.id === 'one') {
-			currTarget = 1;
-			doFirstParam();
-		} else if (e.target.id === 'two') {
-			currTarget = 2;
-			doSecondParam();
-		} else if (e.target.id === 'three') {
-			currTarget = 3;
-			doThirdParam();
-		}
+		const newArr = [];
+		titles.forEach(elem => newArr.push(elem));
+		const currClicked = newArr.findIndex(elem => elem.innerHTML === e.target.innerHTML);
+		setSlide(currClicked);
+		currTarget = currClicked + 1;
 	});
 });
